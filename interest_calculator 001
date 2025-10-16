@@ -1,0 +1,31 @@
+def interest_cal():
+    while True:
+        try:
+            principal =float((input("Pls enter your principal amount: ")).strip())
+            if principal < 0:
+                print("the principal should be ≥0！")
+            else:
+                break
+        except ValueError:
+            print("ValueError"",""pls enter no.")
+    while True:
+        try:
+            rate = int((input("Pls enter your rate: ")).strip())
+            if rate < 0:
+                print("the rate should be ≥0！")
+            else:
+                break
+        except ValueError:
+            print("ValueError"",""pls enter no.")
+    while True:
+        try:
+            time = int((input("Pls enter your time(years): ")).strip())
+            if rate < 0:
+                print("the time should be ≥0！")
+            else:
+                break
+        except ValueError:
+            print("ValueError"",""pls enter no.")
+    total = principal*(1+rate/100)**time
+    print(f"your total amount is USD{total:.2f}")
+interest_cal()
