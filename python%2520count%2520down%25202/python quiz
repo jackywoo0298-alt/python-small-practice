@@ -1,0 +1,28 @@
+questions = ("How many suns in the sky?",
+             "How many moons in the sky?",
+             "How many stars in the sky?")
+optionals = (("A.0","B.1", "C.2", "D.3"),
+             ("A.0","B.1", "C.2", "D.3"),
+             ("A.0","B.1", "C.2", "D.many"))
+scores = 0
+num_of_questions = 0
+guesses = []
+answers = ("B","B","D")
+
+for idx,question in enumerate(questions):
+    print(f"{idx+1}.{question}")
+    for optional in optionals[num_of_questions]:
+        print(optional)
+    guess = input("pls choose your answer: ").upper()
+    num_of_questions +=1
+    guesses.append(guess)
+
+    if  guess == answers[idx]:
+        scores += 1
+        print("correct")
+    else:
+        print(f"Wrong, the right answer is {answers[idx]}")
+    print("-------------------------")
+print()
+print("----------------result--------------")
+print(f"your score is {int(scores/len(questions)*100)}%!")
