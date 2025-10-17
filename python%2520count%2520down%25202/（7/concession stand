@@ -1,0 +1,29 @@
+# menu
+# select
+# show select and calculate total price
+cart = []
+total = 0
+count = 0
+menu = {"potato": 1.2, "coca": 2.3, "popcorn": 6, "soda": 3.5, "chicken": 30, "beef": 50}
+print("------menu------")
+for foods,prices in menu.items():
+    print(f"{foods}:USD{prices:.2f}")
+print("------menu------")
+print()
+while True:
+    select = input("Select food from the menu(e to exit): ").strip().lower()
+    if select in menu.keys():
+        cart.append(select)
+        total += menu[select]
+    elif select.lower() == "e":
+        print("Done!")
+        break
+    else:
+        print(f"{select} doesn't exist in the menu!")
+
+print("------your selection------")
+for food in cart:
+    print(f"{food} : USD{menu.get(food)}")
+print("------your selection------")
+
+print(f"the total costs is USD{total}")
