@@ -1,0 +1,83 @@
+# python number guess game
+# 1.let user guess
+# 2.feedback-if wrong
+# 3.guess again -feedback-till right
+
+def num_guess():
+    import random
+
+    target_number = random.randint(1,101)
+    guess_times = 0
+
+    while True:
+        guess_times += 1
+        try:
+            guess_number = int(input("Enter a guess number(1<num≤100): "))
+            if guess_number <= 1 or guess_number > 100:
+                print("invalid number,pls make sure 1< guess_number < 100 ")
+            else:
+                if guess_number < target_number:
+                    print("too smaller,pls guess again!")
+                elif guess_number > target_number:
+                    print("too larger,pls guess again!")
+                else:
+                    print(f"Binge! The targe no. is {target_number} and you guess {guess_times} times!")
+                    break
+        except ValueError:
+            print("ValueError,pls only enter integral.")
+num_guess()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
