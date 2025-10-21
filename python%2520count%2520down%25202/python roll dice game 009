@@ -1,0 +1,59 @@
+# python roll dice game
+# 1.dictionary of dices
+# 2.computer_random
+# 3.how many times to roll?
+# 4.print the dice pictures
+# 5.sum up the dices
+
+import random
+dice={1:("┌────────┐",
+          "│        │",
+          "│    ●   │",
+          "│        │",
+          "└────────┘"),
+       2:("┌────────┐",
+          "│  ●     │",
+          "│        │",
+          "│      ● │",
+          "└────────┘"),
+       3:("┌────────┐",
+          "│  ●     │",
+          "│    ●   │",
+          "│      ● │",
+          "└────────┘"),
+       4: ("┌────────┐",
+           "│  ●   ● │",
+           "│        │",
+           "│  ●   ● │",
+           "└────────┘"),
+       5: ("┌────────┐",
+           "│  ●   ● │",
+           "│    ●   │",
+           "│  ●   ● │",
+           "└────────┘"),
+       6: ("┌────────┐",
+           "│  ●   ● │",
+           "│  ●   ● │",
+           "│  ●   ● │",
+           "└────────┘")
+       }
+
+while True:
+       dice_num = input("How many dice do you want? ").strip()
+       if not dice_num.isdigit() :
+              print("pls input only digit!")
+       else:
+              break
+dice_random=[]
+total=0
+for i in range(int(dice_num)):
+    dice_random.append(random.randint(1, 6))
+    # for line in dice.get(dice_random[i]):
+    #     print(line)
+print(dice_random)
+print(sum(dice_random))
+
+for line in range(5):
+    for die in dice_random:
+        print(dice.get(die)[line],end="")
+    print()
