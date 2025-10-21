@@ -1,0 +1,30 @@
+# python encrypted game
+# list of punctuation,digital and letters
+# 2.user_input text
+# 3.encrypt
+# 4.decrypt
+import random
+import string
+# from random import shuffle
+
+encrypt_material = list(" "+ string.digits + string.punctuation + string.ascii_letters)
+key = encrypt_material.copy()
+random.shuffle(key)
+# print(f"encrypt_material: {encrypt_material}")
+# print(f"key: {key}")
+
+user_text = input("pls enter the text you want to encrypt: ")
+cipher_text = ""
+for letter in user_text:
+    index = encrypt_material.index(letter)
+    cipher_text += key[index]
+print(f"user_text: {user_text}")
+print(f"cipher_text: {cipher_text}")
+
+code = input("pls enter the code you want to decrypt: ")
+original_text = ""
+for letter_2 in code:
+    index_2 = key.index(letter_2)
+    original_text += encrypt_material[index_2]
+print(f"code: {code}")
+print(f"original_text: {original_text}")
