@@ -1,0 +1,36 @@
+# python card number validator
+# 1.user's card input
+# 2.remove " " and "-"
+# 3.reverse card number
+# 4.even number*2
+# 5.if number*2 > 9, sum up each digit of number*2 or minus 9
+# 6.if number*2 ≤ 9, keep the same
+# 7.sum up all digits of the new even number and odd number
+# 8.if new number % 10 = 0,it is valid
+
+card_number = input("Enter your card number: ")
+card_number = card_number.replace(" ","")
+card_number = card_number.replace("-","")
+card_number = card_number[::-1]
+card_number_list = list(card_number)
+card_number_list_num = [int(n) for n in card_number_list]
+
+card_number_list_num_even = []
+for num1 in card_number_list_num[1::2]:
+    if num1*2 > 9:
+        num1 = num1*2-9
+    else:
+        num1 = num1*2
+    card_number_list_num_even.append(num1)
+
+card_number_list_num_odd = []
+for num2 in card_number_list_num[::2]:
+    card_number_list_num_odd.append(num2)
+
+# print(f"odd num list: {card_number_list_num_odd}")
+# print(f"even num list: {card_number_list_num_even}")
+
+if (sum(card_number_list_num_odd) + sum(card_number_list_num_even))%10 == 0:
+    print("your card no.is valid!")
+else:
+    print("invalid!")
