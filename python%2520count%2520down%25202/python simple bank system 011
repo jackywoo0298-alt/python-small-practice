@@ -1,0 +1,60 @@
+# python simple bank system
+# 1.def balance
+# 2.def deposit
+# 3.def withdraw
+# 4.operation list-balance/deposit/withdraw/exit
+# 5.using choice
+def show_balance(your_balance):
+    print(f"your balance is ${your_balance:.2f}")
+
+def deposit():
+    while True:
+        try:
+            amount = float(input("Enter your deposit: "))
+            if amount < 0:
+                print("the deposit should be ≥ 0")
+                continue
+            else:
+                return amount
+        except ValueError:
+            print("ValueError,pls enter numbers!")
+
+
+def withdraw(your_balance):
+    while True:
+        try:
+            withdraw_amount = float(input("Enter your withdraw amount: "))
+            if your_balance == 0:
+                print(f"your balance is {your_balance},no money to withdraw!")
+                return 0
+            else:
+                if withdraw_amount < 0 or withdraw_amount > your_balance:
+                    print(f"withdraw_amount should between 0 and {your_balance}！")
+                    continue
+                else:
+                    return withdraw_amount
+        except ValueError:
+            print("ValueError,pls enter numbers!")
+def main():
+    your_balance = 0
+    is_running = True
+    while is_running:
+        print("1. check balance")
+        print("2. deposit ")
+        print("3. withdraw ")
+        print("4. Exit ")
+        user_choice = input("Choose an operation above!(1/2/3/4): ").strip()
+        if user_choice == "1":
+            show_balance(your_balance)
+        elif user_choice == "2":
+            your_balance += deposit()
+        elif user_choice == "3":
+            your_balance -= withdraw(your_balance)
+        elif user_choice == "4":
+            is_running = False
+        else:
+            print("pls input right choice!")
+    print("Thank you!Bye!")
+
+if __name__ =="__main__" :
+    main()
