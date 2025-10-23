@@ -1,0 +1,55 @@
+# python slot machine game
+# 1. check the balance
+# 2. balance = 0 ----→ input deposit--(balance+=deposit)
+# 3. input bet
+# 4. bet>balance ----→ input bet
+# 5. bet<=balance(balance-=bet) ----→ spin-row(random)
+# 6. win- row same:
+# 7.1 row=apple,pay_out=2*bet;…… row=apple,pay_out=6*bet (balance+=deposit) (balance+=payout)
+# 8.continue/exit
+# 9.continue----→ input bet
+# 10.exit----→ print(bye bye)
+
+import random
+def main():
+    balance = 0
+    print("********slot machine game********")
+    while True:
+        bet = input("how much you want to bet?('E' to exit):  ").strip().upper()
+        if bet == "E":
+            print("bye bye!")
+            break
+        if not bet.isdigit():
+            print("pls only enter digit for bet!")
+
+        else:
+            bet = float(bet)
+            if balance == 0:
+                print(f"your balance is ${balance:.2f},pls deposit")
+                while True:
+                    deposit = input("how much you want to deposit? ").strip()
+                    if not deposit.isdigit():
+                        print("pls only enter digit for deposit!")
+                    else:
+                        deposit = float(deposit)
+                        balance += deposit
+                        print(f"your balance is ${balance:.2f}!")
+                        break
+
+            elif 0< balance < bet:
+                print(f"your bet ${bet} is more than your balance ${balance:.2f}")
+            else:
+                balance -= bet
+                odds ={"🍇":2, "🍉":3, "🍌":4, "🍅":5, "🍓":6}   #add
+                icons = list(odds.keys())  #revised
+                result = [random.choice(icons) for _ in range(3)]
+                print(result)
+                if result[0] == result[1] == result[2]:
+                    pay_out = bet*odds[result[0]]
+                    balance += pay_out
+                    print(f"you win!your balance is ${balance:.2f}")
+                else:
+                    print(f"you lose!your balance is ${balance:.2f}")
+
+if __name__ =="__main__":
+    main()
