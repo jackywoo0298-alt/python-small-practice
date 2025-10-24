@@ -1,0 +1,65 @@
+import random
+
+def spin_row(odds):
+    return [random.choice(list(odds.keys())) for _ in range(3)]
+
+def print_row(row):
+    print(" | ".join(row))
+
+def get_payout(row,odds,bet):
+    if row[0] == row[1] == row[2]:
+        return bet*odds.get(row[0])
+    else:
+        return 0
+
+def main():
+    balance = 0
+    odds = {"🍏": 2, "🍎": 4, "🍐": 6, "🍊": 8, "🍋": 10}
+    print("Welcome slot game!")
+    print(f"odds: {odds}")
+    while True:
+        print(f"your balance is ${balance}")
+        if balance <=0:
+            # print(f"your balance is ${balance}")
+            deposit = input("pls enter your deposit: ").strip()
+            if not deposit.isdigit():
+                print("pls enter only digit for deposit!")
+                continue
+
+            deposit = float(deposit)
+            balance += deposit
+        else:
+
+            bet = input("pls enter your bet('E' to exit): ").strip().upper()
+
+            if bet =="E":
+                print("bye bye!")
+                break
+            if not bet.isdigit():
+                print("pls enter only digit for bet!")
+                continue
+
+            bet=float(bet)
+            if bet > balance:
+                print("insufficient funds!")
+                continue
+
+            elif bet <= 0:
+                print("bet should more than 0!")
+                continue
+
+            balance-=bet
+            row = spin_row(odds)
+            print()
+            print("****spinning result****")
+            print("*******************")
+            print_row(row)
+            print("*******************")
+
+            payout = get_payout(row,odds,bet)
+            balance += payout
+            print(f"your payout is {payout}")
+
+
+if __name__ == "__main__":
+    main()
