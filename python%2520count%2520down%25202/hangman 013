@@ -1,0 +1,86 @@
+import random
+
+words = ("banana","apple","pear","durian","pineapple")
+
+hangman_art= {0:("",
+                  "",
+                  ""),
+               1: ("o",
+                   "",
+                   ""),
+               2:("o",
+                  "|",
+                  ""),
+               3:(" o ",
+                  "/|",
+                  ""),
+               4: (" o ",
+                   "/|\\",
+                   ""),
+               5:(" o ",
+                  "/|\\",
+                  "/"),
+               6:(" o ",
+                  "/|\\",
+                  "/ \\ ")
+               }
+
+
+def display_hangman(wrong_guess):
+    print("*****hangman*****")
+    for line in hangman_art[wrong_guess]:
+        print(line)
+    print("*****hangman*****")
+
+def display_hint(hint,answer):
+    print("*****hint*****")
+    print(" ".join(hint))
+    print("*****hint*****")
+
+
+def display_answer(answer):
+    print("****answer****")
+    print(" ".join(answer))
+    print("****answer****")
+
+def main():
+    print("Welcome to the hangman game!")
+    answer = random.choice(words)
+    hint = ["_"] * len(answer)
+    wrong_guesses = 0
+    guess_letters = set()
+
+    is_running = True
+    while is_running:
+        guess = input("Pls guess a letter: ").strip().lower()
+
+        if len(guess) != 1 or not guess.isalpha():
+            print("pls enter only 1 letter and it should be only alphabet!")
+            continue
+
+        if guess in guess_letters:
+            print(f"you have guessed the letter {guess},and pls try another one!")
+            print(guess_letters)
+            continue
+        guess_letters.add(guess)
+
+        if guess in answer:
+            for i in range(len(answer)):
+                if answer[i] == guess:
+                    hint[i] = guess
+            display_hint(hint, answer)
+            if list(answer) == hint:
+                display_answer(answer)
+                print(f"great!you win!the answer is {answer}")
+                is_running = False
+
+        else:
+            wrong_guesses += 1
+            display_hangman(wrong_guesses)
+            print()
+            display_hint(hint, answer)
+            if wrong_guesses == len(hangman_art)-1:
+                print("Game over! YOU LOSE!")
+                is_running = False
+if __name__ == "__main__":
+    main()
