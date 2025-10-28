@@ -1,0 +1,26 @@
+def computer_guess_num():
+    min_num = 1
+    max_num = 100
+    guess = (min_num + max_num) // 2
+    print(f"computer first guess num: {guess}")
+    count = 0
+    while True:
+
+        user_feedback = input(f"TARGET IS HIGHER OR LOWER THAN {guess} or C for correct ?(H/L/C): ").upper().strip()
+
+        if user_feedback == "C":
+            print(f"great！The target num is {guess} and you just count for {count} times!")
+            break
+        elif user_feedback == "H":
+            min_num = guess + 1
+            guess = (max_num + min_num)//2
+            print(f"computer guess num: {guess}")
+        elif user_feedback == "L":
+            max_num = guess -1
+            guess = (max_num + min_num) // 2
+            print(f"computer guess num: {guess}")
+        else:
+            print("invalid input!")
+            continue
+        count += 1
+computer_guess_num()
