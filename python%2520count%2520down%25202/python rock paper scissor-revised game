@@ -1,0 +1,50 @@
+# rock,paper,scissor game
+# 1. you choose
+# 2. computer random choose
+# 3. if you choose == computer random choose --------draw
+# 4. else:
+# 4.1. if  you-"rock", computer-"scissor"
+#          you-"paper", computer-"rock"
+#          you-"scissor", computer-"paper"----------------you win
+# 4.2. else ___________________________________________---you lose
+# 5. count win times
+
+import random
+def rock_paper_scissor():
+    options = {"R":"✊","P":"✋","S":"✌️" }
+    count_win = 0
+    count = 0
+
+    while True:
+
+        user_choice = input("Enter R/P/S for rock/paper/scissor(‘E to exit’)：").upper().strip()
+        computer_choice = random.choice(list(options.keys()))
+
+        if user_choice == "E":
+            break
+        elif user_choice not in list(options.keys()):
+                print("invalid input!")
+                continue
+
+        else:
+            print(f"User's choice: {options[user_choice]}")
+            print(f"Computer: {options[computer_choice]}")
+
+            if user_choice == computer_choice:
+                print("Draw!")
+
+            elif ((user_choice =="R" and computer_choice =="S") or 
+                  (user_choice =="P" and computer_choice =="R") or 
+                  (user_choice =="S" and computer_choice =="P")):
+                print("you win!")
+                count_win += 1
+
+            else:
+                print("you lose!")
+
+        count += 1
+
+    print(f"Thank you for playing!You win {count_win} times out of {count} times!")
+
+rock_paper_scissor()
+
