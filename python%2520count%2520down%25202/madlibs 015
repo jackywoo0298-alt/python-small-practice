@@ -1,0 +1,34 @@
+import random
+def mad_libs(kangaroo=None):
+
+    text = """ 
+    One [adjective_1] morning, you stumble on a [color1] café hidden down an alley. 
+    The barista hands you a [noun1] and says, “This grants one wish—if you share a [adjective2] story!”
+    You tell them about the time you [verb1] with a [noun2] in a [place1]. Suddenly, 
+    the café shakes, and a [animal1] pops out, holding a [noun3]. “Your wish is granted!” it cries.
+    You grin, realizing the best adventures start with [adjective3] surprises—and maybe a little [adjective4].”"""
+
+    text = text.replace("[","{")
+    text = text.replace("]", "}")
+
+    noun_pool = ("chair","pig","had","sky","pee","light","moon","noddle")
+    adjective_pool = ("nice","bad","sunny","terrible","handsome","yammy")
+    color_pool = ("white","black","green","blue","red")
+    verb_pool = ("went","stood","laughed","said","sat","ran")
+    place_pool = ("house","playground","shop","flat","school","hometown","company")
+    animal_pool = ("pig","fish","kangaroo","cicada","fly","bat","tiger")
+
+    your_story = text.format(adjective_1 = random.choice(adjective_pool),
+                             color1=random.choice(color_pool),
+                             adjective2=random.choice(adjective_pool),
+                             adjective3=random.choice(adjective_pool),
+                             adjective4=random.choice(adjective_pool),
+                             noun1 = random.choice(noun_pool),
+                             noun2 = random.choice(noun_pool),
+                             noun3=random.choice(noun_pool),
+                             verb1 = random.choice(verb_pool),
+                             place1=random.choice(place_pool),
+                             animal1=random.choice(animal_pool)
+                             )
+
+    print(your_story)
