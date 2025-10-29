@@ -1,0 +1,57 @@
+def get_number(prompt):
+    while True:
+        try:
+            return float(input(prompt).strip())
+        except ValueError:
+            print('ValueError,pls enter only number!')
+
+def operation_calculator(num_1,num_2):
+    operation_list = ("+", "-", "*", "/")
+    while True:
+        operation = input("Pls choose an operation(+,-,*,/): ")
+        if operation in operation_list:
+            if operation == "+":
+                return f"{num_1} + {num_2} = {num_1 + num_2}"
+            elif operation == "-":
+                return f"{num_1} - {num_2} = {num_1 - num_2}"
+            elif operation == "*":
+                return f"{num_1} * {num_2} = {num_1 * num_2}"
+            elif operation == "/":
+                if num_2 != 0:
+                    return f"{num_1} / {num_2} = {num_1 / num_2}"
+                else:
+                    return "can't divide by 0!"
+        else:
+            return "Invalid input!"
+
+def keep_playing():
+    while True:
+        play_again = input("play again(y/n)?  ")
+        if play_again == "y":
+            return True
+        elif play_again == "n":
+            print("bye bye!")
+            return False
+        else:
+            print("invalid input!")
+
+def main_calculator():
+
+    print("*****************************")
+    print("Welcome to python calculator!")
+    print("*****************************")
+    while True:
+
+        print("pls enter the second number: ")
+        num_1 = get_number("> ")
+
+        print("pls enter the second number: ")
+        num_2 = get_number("> ")
+
+        result = operation_calculator(num_1,num_2)
+        print(f"result: {result}")
+
+        if not keep_playing():
+            break
+
+main_calculator()
