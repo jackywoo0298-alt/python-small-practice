@@ -1,0 +1,43 @@
+import random
+
+def get_random_words(words_type,words_pool,count=4):
+    return random.sample(words_pool[words_type],count)
+
+def play_again():
+    while True:
+        choice = input("Do you want to play again(y/n)?  ").strip().lower()
+        if choice == "y":
+            return True
+        elif choice == "n":
+            return False
+        else:
+            print("Invalid input!")
+
+def main():
+    story_num = 1
+    words_pool = {"noun": ["Banana", "Robot", "Couch", "Chair", "cat"],
+                  "verb": ["Danced", "Sneezed", "saw", "Quacked", "Slept"],
+                  "adjective": ["good", "terrible", "red", "Mysterious", "nice"]
+                  }
+    while True:
+
+        noun1,noun2,noun3,noun4 = get_random_words("noun",words_pool,count=4)
+        verb1, verb2, verb3,verb4 = get_random_words("verb",words_pool,count=4)
+        adjective1, adjective2, adjective3 = get_random_words("adjective",words_pool,count=3)
+        print()
+        print("***********Mad Libs Game***********")
+        print(f"*********your story ({story_num}) ************")
+        print(f"""Yesterday, my pet {noun1} had a {adjective1} adventure.
+It found a {adjective2} {noun2} in the backyard.
+Suddenly, everything {verb1}!
+A {adjective3} cloud appeared and {verb2} all the flowers.
+Then, a {noun3} {verb3} on the roof.
+My pet just {verb4} and ate a yammy {noun4}. What a day!""")
+        print()
+        if not play_again():
+            print("bye,bye!")
+            break
+        story_num += 1
+
+if __name__ == "__main__":
+    main()
