@@ -1,0 +1,60 @@
+# **Rock, Paper, Scissor** (Play against the computer)
+# 1. computer random choice
+# 2. user choice
+# 3. check-win-lose-tie
+# 4. count win times out of play times
+# 5. keep playing?
+import random
+
+def get_computer_choice(choices):
+    return random.choice(list(choices.keys()))
+
+def get_user_choice(choices):
+    while True:
+        user_choice = input("Enter your choice R/P/S for rock/paper/scissor(E to exit): ").upper().strip()
+        if user_choice == "E":
+            return False
+        elif user_choice in list(choices.keys()):
+            return user_choice
+        else:
+            print("invalid input!")
+
+def main():
+    print()
+    print("****WELCOME TO ROCK/PAPER/SCISSOR GAME****")
+    choices = {"R": "✊", "P": "✋", "S": "✌️"}
+    win_count = 0
+    total_count = 0
+    while True:
+        user_choice = get_user_choice(choices)
+
+        if not user_choice:
+            print("bye bye!")
+            print("see you next time!")
+            break
+        print(f"user choice: {choices[user_choice]}")
+
+        computer_choice = get_computer_choice(choices)
+        print(f"computer choice: {choices[computer_choice]}")
+
+        if user_choice == computer_choice:
+            total_count += 1
+            print("tie!")
+
+        else:
+            if (user_choice == "R" and computer_choice == "S") or (user_choice == "P" and computer_choice == "R")\
+                or (user_choice == "S" and computer_choice == "P"):
+                win_count += 1
+                total_count += 1
+                print("you win!")
+            else:
+                total_count += 1
+                print("you lose!")
+    if total_count != 0:
+        print(f"RESULT: You have win {win_count} times out of {total_count} times and you win proportion is {win_count/total_count*100:.0f}%!")
+    else:
+        print(
+            f"RESULT: You haven't play!")
+
+if __name__ == "__main__":
+    main()
