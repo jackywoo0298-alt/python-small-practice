@@ -1,0 +1,53 @@
+import random
+
+def computer_pick_number():
+    computer_number = random.randint(1,100)
+    return computer_number
+
+def get_guess():
+    while True:
+        try:
+            guess = int(input("Pls guess a integer number between 1-100: ").strip())
+            if 1<guess<100:
+                return guess
+            else:
+                print("guess should be between 1-100!")
+        except ValueError:
+            print(f"ValueError,pls only input integer number!")
+def play_again():
+    while True:
+        choice = input("Do you want to play again(y for yes/no for no): ").lower().strip()
+        if choice == "y":
+            return True
+        elif choice == "n":
+            print("bye bye!")
+            break
+        else:
+            print("invalid input!")
+
+def main():
+    computer_number = computer_pick_number()
+    count = 0
+    print()
+    print("*****Welcome to the number guess game!*****")
+    print()
+    print("**********************************")
+
+    while True:
+        guess = get_guess()
+        count += 1
+        if guess == computer_number:
+            print(f"you got it! the target number is {guess} and you guess {count} times!")
+
+        elif guess > computer_number:
+                print("pls enter smaller number!")
+                continue
+        else:
+            print("pls enter bigger number!")
+            continue
+
+        if not play_again():
+            break
+        else:
+            computer_number = computer_pick_number() #get random number again
+main()
