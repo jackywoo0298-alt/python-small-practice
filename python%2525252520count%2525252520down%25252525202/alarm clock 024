@@ -1,0 +1,46 @@
+# ****alarm clock**
+import pygame.mixer
+import pygame
+import time
+
+def get_set_time(prompt):
+    while True:
+        try:
+            user_input_time = int(input(prompt).strip())
+            if user_input_time < 0:
+                print("user input time should >= 0")
+            else:
+                return user_input_time
+        except ValueError:
+            print("invalid input!")
+
+def alarm(total_seconds):
+    while total_seconds >= 0:
+        show_minutes = total_seconds // 60
+        show_seconds = total_seconds % 60
+        time.sleep(1)
+        total_seconds -= 1
+        print(f"\r{show_minutes:02d}:{show_seconds:02d}", end=" ", flush=True)
+    print()
+
+def play_music():
+    music_file = "speaker_test_sound.mp3"
+    pygame.mixer.init()
+    pygame.mixer.music.load(music_file)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        time.sleep(1)
+
+def main():
+    get_minutes = get_set_time("Enter minutes: ")
+    get_seconds = get_set_time("Enter seconds: ")
+    total_seconds = get_minutes * 60 + get_seconds
+
+    alarm(total_seconds)
+    print("alarm ringing......")
+    play_music()
+    print("Done!")
+
+if __name__ == "__main__":
+    main()
+
