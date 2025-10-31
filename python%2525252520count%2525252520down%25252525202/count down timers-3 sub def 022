@@ -1,0 +1,43 @@
+import time
+
+def get_set_number():
+    """get number from user"""
+    while True:
+        try:
+            set_number = int(input("Enter a number you want to start to countdown?  ").strip())
+            if set_number > 1:
+                return set_number
+            else:
+                print("the set number should >1!")
+
+        except ValueError:
+            print("ValueError,pls enter only integer!")
+
+def count_down(set_number):
+    print(f"\nStarting countdown from {set_number}...")
+    for i in range(set_number,0,-1):
+        print(i)
+        time.sleep(1)
+    print("finish!")
+
+def replay():
+    while True:
+        choice = input("replay or not(y/n)? ").strip().lower()
+        if choice == "y":
+            return True
+        elif choice == "n":
+            return False
+        else:
+            print("invalid input！pls input only n or y!")
+
+def main():
+    print()
+    print("***welcome to countdown game***")
+    while True:
+        set_number = get_set_number()
+        count_down(set_number)
+        if not replay():
+            break
+
+if __name__ == "__main__":
+    main()
