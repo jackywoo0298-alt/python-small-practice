@@ -1,0 +1,43 @@
+import time
+
+def get_set_time(prompt):
+    """get time from user"""
+    while True:
+        try:
+            set_time = int(input(prompt).strip())
+            if set_time >= 0:
+                return set_time
+            else:
+                print("the set time should >0!")
+
+        except ValueError:
+            print("ValueError,pls enter only integer!")
+
+def format_time(seconds):
+    trans_hours = seconds // 3600
+    trans_minutes = (seconds % 3600) // 60
+    trans_seconds = seconds % 60
+    return f"countdown: {trans_hours:02d}:{trans_minutes:02d}:{trans_seconds:02d}"
+
+def main():
+    print()
+    print("***welcome to countdown game***")
+
+    hours = get_set_time("Enter hours: ")
+    minutes = get_set_time("Enter minutes: ")
+
+    while True:
+        seconds = get_set_time("Enter seconds: ")
+        if hours == 0 and minutes ==0 and seconds ==0:
+            print("seconds should > 0! ")
+        else: break
+
+    total_seconds = hours * 3600 + minutes * 60 + seconds
+
+    while total_seconds > 0:
+        time.sleep(1)
+        total_seconds -= 1
+        print(f"{format_time(total_seconds)}")
+
+if __name__ == "__main__":
+    main()
