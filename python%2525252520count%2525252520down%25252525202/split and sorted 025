@@ -1,0 +1,42 @@
+# open and read file
+# split words
+# count words
+# sorted words
+import re
+
+def open_file(file_to_open):
+    with open(file_to_open,"r", encoding="utf-8")as f:
+        return f.read()
+
+def words_split(original_file):
+    words = re.split(r"""[—:,“”".!。?()+#\s]\s*""",original_file)
+    return [i for i in words if i]
+
+def words_count(original_file):
+    text_dict = dict()
+    for item in original_file:
+        if item in text_dict:
+            text_dict[item]+=1
+        else:
+            text_dict[item] = 1
+    return text_dict
+
+def sorted_func(original_dic):
+    sort_file = sorted(original_dic.items(),key=lambda item:item[1],reverse=True)
+    return sort_file
+
+def main():
+    text = open_file("mytext.txt")
+    print(text)
+
+    text_split = words_split(text)
+    print(f"text_split is {text_split}")
+
+    my_text_dict_count = words_count(text_split)
+    print(my_text_dict_count)
+
+    my_text_dict_sorted = sorted_func(my_text_dict_count)
+    print(my_text_dict_sorted)
+
+if __name__ == "__main__":
+    main()
