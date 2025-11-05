@@ -1,0 +1,18 @@
+nums_list = [5, 1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 2, 24, 45]
+
+def two_num_indices(target):
+    my_hash = {}
+    for i in range(len(nums_list)):
+        my_hash[nums_list[i]] = i   # generate hash map
+    print(my_hash) # display the hash map
+
+    for i in range(len(nums_list)):
+        num2 = target - nums_list[i]  # loop number2
+        print(nums_list[i])  # display num1 in loop
+        print(num2)  # display num2 in loop
+
+        if num2 in my_hash and my_hash[num2] != i: # number2 exist in map or not
+            return [i, my_hash[num2]]   # output value of 2 numbers
+    return None
+
+print(two_num_indices(16))
