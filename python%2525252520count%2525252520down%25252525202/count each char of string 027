@@ -1,0 +1,13 @@
+def count_char():
+    input_string = input("pls enter a string: ").lower()
+    dic_char_count = {}
+    for char in input_string:
+        if char.isalpha():
+            if char in dic_char_count:
+                dic_char_count[char] += 1
+            else: dic_char_count[char] = 1
+
+    sorted_dic_char = sorted(dic_char_count.items())
+    return sorted_dic_char
+
+print(count_char())
